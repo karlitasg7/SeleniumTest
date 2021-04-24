@@ -13,7 +13,7 @@ public class TestSelenium {
 		System.setProperty("webdriver.chrome.driver", exePath + "chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.google.com");
-
+		//un comentario
 	}
 
 }
