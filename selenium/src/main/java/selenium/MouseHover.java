@@ -7,10 +7,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
-public class Practica_Directory {
+public class MouseHover {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		String exePath = Paths.get("").toAbsolutePath().toString() + File.separator + "driver" + File.separator;
 		System.setProperty("webdriver.chrome.driver", exePath + "chromedriver.exe");
@@ -27,29 +28,15 @@ public class Practica_Directory {
 		userName.sendKeys("Admin");
 		password.sendKeys("admin123");
 		loginBtn.click();
-
-		WebElement menuDirectory = driver.findElement(By.id("menu_directory_viewDirectory"));
-		menuDirectory.click();
-
-		WebElement txtSearchName = driver.findElement(By.id("searchDirectory_emp_name_empName"));
-		txtSearchName.sendKeys("Nathan");
-
-		WebElement btnSearch = driver.findElement(By.id("searchBtn"));
-		btnSearch.click();
-
-		String textResult = driver.findElement(By.id("resultTable")).getText();
-
-		// para probar con xpath
-		// String textResult =
-		// driver.findElement(By.xpath("//*[@id=\"resultTable\"]/tbody/tr[2]/td[2]/ul/li[1]/b")).getText();
-
-		if (textResult.contains("Nathan Elliot")) {
-			System.out.println("Si lo encontro");
-		} else {
-			System.out.println("No lo encontro");
-		}
-
-		driver.quit();
+		
+		//admin menu mouse hover
+		WebElement adminMenu = driver.findElement(By.id("menu_admin_viewAdminModule"));
+		WebElement nationalitiesSubMenu = driver.findElement(By.id("menu_admin_nationality"));
+		
+		Actions builder = new Actions(driver);
+		builder.moveToElement(adminMenu).perform();
+		Thread.sleep(3000);
+		nationalitiesSubMenu.click();
 
 	}
 
